@@ -8,7 +8,7 @@
 //     const { refetch, data: cart = [] } = useQuery({
 //         queryKey: ['carts', user?.email],
 //         queryFn: async () => {
-//             const res = await fetch(`https://bistro-boss-server-nu-six.vercel.app/carts?email=${user?.email}`,
+//             const res = await fetch(`https://bistro-boss-server-p0h64m7td-mdjewel999.vercel.app/carts?email=${user?.email}`,
 //             {headers:{
 //                 authorization:`bearer ${token}`
 //             }})
@@ -21,31 +21,29 @@
 // }
 // export default useCart;
 
-
-import { useQuery } from '@tanstack/react-query'
-import useAxiosSecure from './useAxiosSecure';
-import useAuth from './useAuth';
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "./useAxiosSecure";
+import useAuth from "./useAuth";
 const useCart = () => {
-    const { user, loading } = useAuth();
-    // const token = localStorage.getItem('access-token');
-    const [axiosSecure] = useAxiosSecure();
-    const { refetch, data: cart = [] } = useQuery({
-        queryKey: ['carts', user?.email],
-        enabled: !loading,
-        // queryFn: async () => {
-        //     const res = await fetch(`https://bistro-boss-server-nu-six.vercel.app/carts?email=${user?.email}`, { headers: {
-        //         authorization: `bearer ${token}`
-        //     }})
-        //     return res.json();
-        // },
-        queryFn: async () => {
-            const res = await axiosSecure(`/carts?email=${user?.email}`)
-            console.log('res from axios', res)
-            return res.data;
-        },
-    })
+  const { user, loading } = useAuth();
+  // const token = localStorage.getItem('access-token');
+  const [axiosSecure] = useAxiosSecure();
+  const { refetch, data: cart = [] } = useQuery({
+    queryKey: ["carts", user?.email],
+    enabled: !loading,
+    // queryFn: async () => {
+    //     const res = await fetch(`https://bistro-boss-server-p0h64m7td-mdjewel999.vercel.app/carts?email=${user?.email}`, { headers: {
+    //         authorization: `bearer ${token}`
+    //     }})
+    //     return res.json();
+    // },
+    queryFn: async () => {
+      const res = await axiosSecure(`/carts?email=${user?.email}`);
+      console.log("res from axios", res);
+      return res.data;
+    },
+  });
 
-    return [cart, refetch]
-
-}
+  return [cart, refetch];
+};
 export default useCart;

@@ -12,9 +12,12 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`https://bistro-boss-server-nu-six.vercel.app/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
+    fetch(
+      `https://bistro-boss-server-p0h64m7td-mdjewel999.vercel.app/users/admin/${user._id}`,
+      {
+        method: "PATCH",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -36,7 +39,7 @@ const AllUsers = () => {
   return (
     <div className="w-full">
       <Helmet>
-        <title>Bistro Boss | All users</title>
+        <title>Pizza Potpourri Palace | All users</title>
       </Helmet>
       <h3 className="text-3xl font-semibold my-4">
         Total Users: {users.length}

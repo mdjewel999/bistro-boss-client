@@ -9,9 +9,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import LoginImg from "../../../src/assets/Login/login.webp";
+import "./Login.css";
 
 const Login = () => {
-  const [ setDisabled] = useState(true);
+  const [setDisabled] = useState(true);
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -40,7 +42,7 @@ const Login = () => {
           popup: "animate__animated animate__fadeOutUp",
         },
       });
-      navigate(from, {state: {from: location} });
+      navigate(from, { state: { from: location } });
     });
   };
 
@@ -56,48 +58,55 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Login</title>
+        <title>Pizza Potpourri Palace | Login</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col md:flex-row-reverse">
-          <div className="text-center md:w-1/2 lg:text-left">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+      <div className="hero p-12 bg-cover bg-no-repeat shadow-2xl bg-[url('https://imageservice.sky.com/pcms/d77bf0c2-bbf8-11e8-b772-67d2e06521b0/AGG_SOURCE?territory=GB&proposition=SBO_SPORT&language=eng')] text-white ">
+        <div className="hero-content grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <div className="text-center">
+              <h1 className="text-5xl font-bold">Login now!</h1>
+              <p className="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                assumenda excepturi exercitationem quasi. In deleniti eaque aut
+                repudiandae et a id nisi.
+              </p>
+            </div>
+
+            <div>
+              <img src={LoginImg} alt="" className="w-[350px] h-[350px]" />
+            </div>
           </div>
-          <div className="card md:w-1/2 max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
+
+          <div className="card  bg-[#161616] border border-white input-bordered  shadow-2xl ">
+            <form onSubmit={handleLogin} className="card-body m-0">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="text-white">Email</span>
                 </label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="email"
-                  className="input input-bordered"
+                  placeholder="Your Email"
+                  className="input input-bordered border-b border-white "
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="text-white">Password</span>
                 </label>
                 <input
                   type="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="Your Password"
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <a href="#" className="text-white link link-hover">
                     Forgot password?
                   </a>
                 </label>
               </div>
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
                   <LoadCanvasTemplate />
                 </label>
@@ -105,26 +114,29 @@ const Login = () => {
                   onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha"
-                  placeholder="type the captcha above"
+                  placeholder="Type the captcha above"
                   className="input input-bordered"
                 />
               </div>
               {/* TODO: make button disabled for captcha */}
-              <div className="form-control mt-6">
+              <div className="form-control w-full">
                 <input
                   disabled={false}
-                  className="btn btn-primary"
+                  className="btn bg-custom"
                   type="submit"
                   value="Login"
                 />
               </div>
+
+              <p className="">
+                  <small>
+                    New Here? <Link to="/signup">Create an account</Link>{" "}
+                  </small>
+                </p>
+              <div className="">
+                <SocialLogin></SocialLogin>
+              </div>
             </form>
-            <p>
-              <small>
-                New Here? <Link to="/signup">Create an account</Link>{" "}
-              </small>
-            </p>
-            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>

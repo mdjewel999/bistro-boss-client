@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import LoginImg from "../../../src/assets/Login/login.webp";
 import { AuthContext } from "../../providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
@@ -24,14 +25,17 @@ const SignUp = () => {
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          const saveUser = { name: data.name, email: data.email }
-          fetch("https://bistro-boss-server-nu-six.vercel.app/users", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
-          })
+          const saveUser = { name: data.name, email: data.email };
+          fetch(
+            "https://bistro-boss-server-p0h64m7td-mdjewel999.vercel.app/users",
+            {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(saveUser),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {
@@ -55,23 +59,36 @@ const SignUp = () => {
   return (
     <>
       <Helmet>
-        <title>Bistro Boss | Sign Up</title>
+        <title>Pizza Potpourri Palace | Sign Up</title>
       </Helmet>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign up now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+      <div className="hero p-12 bg-cover bg-no-repeat shadow-2xl bg-[url('https://imageservice.sky.com/pcms/d77bf0c2-bbf8-11e8-b772-67d2e06521b0/AGG_SOURCE?territory=GB&proposition=SBO_SPORT&language=eng')] text-white ">
+        <div className="hero-content grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <div className="text-center">
+              <h1 className="text-5xl font-bold">SignUp now!</h1>
+              <p className="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                assumenda excepturi exercitationem quasi. In deleniti eaque aut
+                repudiandae et a id nisi.
+              </p>
+            </div>
+
+            <div>
+              <img
+                src={LoginImg}
+                alt=""
+                className="w-[350px] h-[350px] items-center"
+              />
+            </div>
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+          <div className="card  bg-[#161616] border border-white input-bordered  shadow-2xl">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="card-body m-0 text-white"
+            >
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="text-white">Name</span>
                 </label>
                 <input
                   type="text"
@@ -86,7 +103,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Photo URL</span>
+                  <span className="text-white">Photo URL</span>
                 </label>
                 <input
                   type="text"
@@ -100,7 +117,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="text-white">Email</span>
                 </label>
                 <input
                   type="email"
@@ -115,7 +132,7 @@ const SignUp = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="text-white">Password</span>
                 </label>
                 <input
                   type="password"
@@ -146,25 +163,28 @@ const SignUp = () => {
                   </p>
                 )}
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <a href="#" className="text-white link link-hover">
                     Forgot password?
                   </a>
                 </label>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control w-full ">
                 <input
-                  className="btn btn-primary"
+                  className="btn bg-custom"
                   type="submit"
                   value="Sign Up"
                 />
               </div>
             </form>
-            <p>
+            <p className="px-8 py-4">
               <small>
-                Already have an account <Link to="/login">Login</Link>
+                Already have an account <Link to="/login">SignUp</Link>
               </small>
             </p>
-            <SocialLogin></SocialLogin>
+            {/* <div className="divider mt-5">OR</div> */}
+            <div className="">
+              <SocialLogin></SocialLogin>
+            </div>
           </div>
         </div>
       </div>
